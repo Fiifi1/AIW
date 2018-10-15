@@ -24,10 +24,12 @@ int main()
 ofstream outfile;
 outfile.open("results.txt");
 
-double averageScore=0, averageAge=0;
+double sumScore=0, sumAge=0;
+int females=0, males=0;
 
-outfile<<"ID NUMBER"<<"\t"<<"Name"<<"\t"<<" AGE "<<"Gender"<<"\t"<<"Score"<<"\t"<<" Grade "<<endl;
-outfile<<"***************************************************************"<<endl;
+outfile<<"IDnumber"<<"\t\t"<<"Name"<<"\t\t"<<"Age"<<"\t\t"<<"Gender"<<"\t\t"<<"Score"<<"\t\t"<<"Grade"<<endl;
+outfile<<"******************************************************************************************************"<<endl;
+
 student a[5];
 
 for (int i=0; i<=4; i++){
@@ -41,18 +43,27 @@ for (int i=0; i<=4; i++){
  cout<<"Enter student age\t";
  cin>>a[i].age;
 
- cout<<"Enter student gender: M / F\t";
+ cout<<"Enter student gender (M / F): \t";
  cin>>a[i].gender;
+
+    if (a[i].gender =='M' || a[i].gender == 'm')
+        {
+         males++;
+        }
+    else if (a[i].gender == 'F' || a[i].gender == 'f')
+            {
+            females++;
+            }
 
  cout<<"Enter student score\t";
  cin>>a[i].score;
 
- averageScore += (a[i].score);
- averageAge += (a[i].age);
+ sumScore += (a[i].score);
+ sumAge += (a[i].age);
 
  cout<<endl<<endl;
 
- if (a[i].score >=80 && a[i].score <=100)
+    if (a[i].score >=80 && a[i].score <=100)
 		{
         a[i].grade = 'A';
         } else if (a[i].score >= 70 && a[i].score < 80)
@@ -72,13 +83,17 @@ for (int i=0; i<=4; i++){
                             a[i].grade = 'F';
                             }
 
-    outfile<<(i+1)<<". "<<a[i].IDnumber<<" \t\t "<<a[i].name<<"\t"<<a[i].age<<"\t"<<a[i].gender<<"\t"<<a[i].score<<"\t"<<a[i].grade<<endl<<endl;
+
+outfile<<"\t"<<(i+1)<<". "<<a[i].IDnumber<<"\t\t"<<a[i].name<<"\t\t"<<a[i].age<<"\t\t"<<a[i].gender<<"\t\t"<<a[i].score<<"\t\t"<<a[i].grade<<endl<<endl;
 
 
 }
-    outfile<<"AVERAGE SCORE: "<<averageScore/5<<endl;
-    outfile<<"AVERAGE AGE: "<<averageAge/5<<endl;
-    outfile<<"************************************************************"<<endl;
+    outfile<<"AVERAGE SCORE: "<<sumScore/5<<endl;
+    outfile<<"AVERAGE AGE: "<<sumAge/5<<endl;
+    outfile<<"Number of Males: "<<males<<"\nNumber of Females: "<<females<<endl;
+    outfile<<"******************************************************************************************************"<<endl;
+
+    outfile.close();
 
 
     return 0;
